@@ -1,0 +1,27 @@
+# Unity-generated files
+Library/
+Temp/
+obj/
+Logs/
+UserSettings/
+ProjectSettings/
+Packages/
+
+# Visual Studio / MonoDevelop generated files
+.vscode/
+*.csproj
+*.sln
+
+# Unity Specific Files
+Assets/Materials.meta
+Assets/Materials/
+Assets/Models/photo_2024-06-07_21-43-58.jpg
+Assets/Models/photo_2024-06-07_21-43-58.jpg.meta
+Assets/Models/uploads_files_632244_MHT.fbx
+Assets/Models/uploads_files_632244_MHT.fbx.meta
+Assets/Prefab.meta
+Assets/Prefab/
+Assets/Scripts.meta
+Assets/Scripts/
+Assets/TextMesh Pro.meta
+Assets/TextMesh Pro/
