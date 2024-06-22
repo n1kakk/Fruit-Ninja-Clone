@@ -35,11 +35,15 @@ public class Fruit : MonoBehaviour
         Debug.Log("Фрукт разрезан. Попытка воспроизвести ParticleSystem.");
 
         if (juiceParticalEffect != null) {
+            juiceParticalEffect.transform.parent = null;
+            juiceParticalEffect.transform.position = transform.position; 
             juiceParticalEffect.Play();
+            Destroy(juiceParticalEffect.gameObject, juiceParticalEffect.main.duration + juiceParticalEffect.main.startLifetime.constantMax);
             Debug.Log("ParticleSystem воспроизведен.");
         } else {
             Debug.LogError("juiceParticalEffect не инициализирован.");
-        }        CreateSlicedFruit();
+        }        
+        CreateSlicedFruit();
 
     }
 }
