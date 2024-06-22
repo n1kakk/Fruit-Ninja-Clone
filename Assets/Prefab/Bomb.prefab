@@ -136,3 +136,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a50794e1ccb227418799e461b33dbe9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fuseSound: {fileID: 8300000, guid: 9dcbbe72015c0ab4cbaf6e773b09b115, type: 3}
+  explosionSound: {fileID: 8300000, guid: 66c0da745298b194dbc7e444ada1f701, type: 3}
