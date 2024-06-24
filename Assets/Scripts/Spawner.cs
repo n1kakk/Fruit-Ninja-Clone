@@ -15,10 +15,22 @@ public class Spawner : MonoBehaviour
     public float minForce = 12f;
     public float maxForce = 16f;
 
+    public float bombProbability = 10f; 
+    public float bombProbabilityIncreaseRate = 0.1f; 
+    private float maxBombProbability = 50f;
+
 
     void Start()
     {
         StartCoroutine(SpawnFruits());   
+    }
+    void Update() {
+        bombProbability += bombProbabilityIncreaseRate * Time.deltaTime;
+        
+        if (bombProbability > maxBombProbability)
+        {
+            bombProbability = maxBombProbability;
+        }
     }
 
     private IEnumerator SpawnFruits(){
@@ -29,7 +41,7 @@ public class Spawner : MonoBehaviour
 
             GameObject obj = null;
             float p = Random.Range(0, 100);
-            if(p<10){
+            if(p<bombProbability){
                 obj = bomb;
             }else{
                 obj = objectsToSpawn[Random.Range(0, objectsToSpawn.Length)];
