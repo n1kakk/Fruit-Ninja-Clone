@@ -147,6 +147,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slicedFruitPrefab: {fileID: 2183421544637868927, guid: e2247b488680f564a834503b4ea3815d, type: 3}
+  juiceSpotPrefab: {fileID: 4182901317288332772, guid: 0a4b9cb328510c640aeaa9d6b2c439b7, type: 3}
 --- !u!1 &8763141200646526865
 GameObject:
   m_ObjectHideFlags: 0

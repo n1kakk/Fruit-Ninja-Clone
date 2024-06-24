@@ -7,6 +7,8 @@ public class Fruit : MonoBehaviour
 {
     public GameObject slicedFruitPrefab;
     private ParticleSystem juiceParticalEffect;
+    public GameObject juiceSpotPrefab;
+
 
     private void Awake(){
         juiceParticalEffect = GetComponentInChildren<ParticleSystem>();
@@ -30,6 +32,34 @@ public class Fruit : MonoBehaviour
         Destroy(gameObject);
     }
 
+    public void CreateJuiceSpot(){
+        GameObject juiceSpot = (GameObject)Instantiate(juiceSpotPrefab, transform.position, Quaternion.identity);
+        SpriteRenderer sr = juiceSpot.GetComponent<SpriteRenderer>();
+        if (sr != null)
+        {
+            StartCoroutine(FadeOut(sr, 1f));
+        }
+
+    }
+    
+
+    private IEnumerator FadeOut(SpriteRenderer yourSpriteRenderer, float duration)
+    {
+        float alphaVal = yourSpriteRenderer.color.a;
+        Color tmp = yourSpriteRenderer.color;
+
+        while (yourSpriteRenderer.color.a > 0)
+        {
+            alphaVal -= Time.deltaTime / duration;
+            tmp.a = alphaVal;
+            yourSpriteRenderer.color = tmp;
+
+            yield return null;
+        }
+
+        Destroy(yourSpriteRenderer.gameObject); // Уничтожаем объект после исчезновения
+    }
+
     private void OnTriggerEnter2D(Collider2D other) {
         Blade b = other.GetComponent<Blade>();
         if(!b) return;
@@ -46,6 +76,7 @@ public class Fruit : MonoBehaviour
             Debug.LogError("juiceParticalEffect не инициализирован.");
         }        
         CreateSlicedFruit();
+        CreateJuiceSpot();
 
     }
 }
