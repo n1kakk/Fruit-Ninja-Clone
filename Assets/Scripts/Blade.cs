@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class Blade : MonoBehaviour
 {
+    //[SerializeField] private SkinManager skinManager;
     public float minVelo = 0.1f;
     private Rigidbody2D rb;
 
@@ -11,6 +12,7 @@ public class Blade : MonoBehaviour
     private Collider2D coll;
     void Awake()
     {
+        //GetComponent<SpriteRenderer>().sprite = skinManager.GetSelectedSkin().sprite;
         rb = GetComponent<Rigidbody2D>();
     }
 

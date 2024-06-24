@@ -37,6 +37,11 @@ public class GameManag : MonoBehaviour
     private AudioSource audioSource;
 
 
+    [Header("Shop")]
+    public ShopManag shopManag;
+    public GameObject shopPanel;
+
+
     private bool isPaused = false;
 
     private void Awake(){
@@ -129,6 +134,12 @@ public class GameManag : MonoBehaviour
     public void ResumeGame(){
         Time.timeScale = 1; 
         pausedPanel.SetActive(false);
+    }
+
+    void OnShopButtonClicked()
+    {
+        shopManag.HideUIElements(); 
+        shopManag.ShowPanel(shopPanel); 
     }
 
 }
