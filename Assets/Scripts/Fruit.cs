@@ -26,6 +26,7 @@ public class Fruit : MonoBehaviour
         }
 
         FindObjectOfType<GameManag>().IncreaseScore(3);
+        FindObjectOfType<GameManag>().IncreaseCoins(2);
         Destroy(inst.gameObject, 5);
     }
 

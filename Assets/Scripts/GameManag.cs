@@ -8,20 +8,28 @@ public class GameManag : MonoBehaviour
     public int highScore;
     public Text scoreText;
     public Text highScoreText;
+
+
+    [Header("Coins Elements")] 
+    public int coins;
+    public Text coinsText;
     
+
 
     [Header("GameOver")] 
     public GameObject gameOverPanel;
     public Text gameOverPanelScoreText;
     public Text gameOverPanelHighScoreText;
+    public Text gameOverPanelCoinsText;
 
 
     
     [Header("Paused")] 
     public GameObject pausedPanel;
-    public Text pausedPanelScoreText;
-    public Text pausedPanelHighScoreText;
+    // public Text pausedPanelScoreText;
+    // public Text pausedPanelHighScoreText;
     public Button pauseButton; 
+
 
 
     [Header("Sounds")]
@@ -37,11 +45,17 @@ public class GameManag : MonoBehaviour
         pausedPanel.SetActive(false);
         audioSource = GetComponent<AudioSource>();
         GetHighScore();
+        GetCoins();
     }
 
     private void GetHighScore(){
         highScore = PlayerPrefs.GetInt("HighScore");
         highScoreText.text = "Best: " + highScore;
+    }
+
+    private void GetCoins(){
+        coins = PlayerPrefs.GetInt("Coins");
+        coinsText.text = "Coins: " + coins;
     }
 
     public void IncreaseScore(int points){
@@ -52,14 +66,24 @@ public class GameManag : MonoBehaviour
             highScoreText.text = "Best: " + score.ToString();  
         }
     }
+
+    public void IncreaseCoins(int points){
+        coins += points;
+        coinsText.text = "Coins: " + coins.ToString();
+    }
+
     public void OnBombHit(){
         Time.timeScale=0;
         audioSource.Stop();
         gameOverPanel.SetActive(true);
         pauseButton.interactable = false;
         gameOverPanelScoreText.text = "Score: " + score.ToString();
+
         highScore = PlayerPrefs.GetInt("HighScore");
         gameOverPanelHighScoreText.text = "High score: " + highScore.ToString();
+
+        PlayerPrefs.SetInt("Coins", coins);
+        gameOverPanelCoinsText.text = coins.ToString();
     }
 
     public void RestartGame(){
@@ -91,9 +115,9 @@ public class GameManag : MonoBehaviour
             Time.timeScale = 0; 
             Debug.Log("Game Paused");
             pausedPanel.SetActive(true);
-            pausedPanelScoreText.text = "Score: " + score.ToString();
-            highScore = PlayerPrefs.GetInt("HighScore");
-            pausedPanelHighScoreText.text = "High score: " + highScore.ToString();
+            //pausedPanelScoreText.text = "Score: " + score.ToString();
+            //highScore = PlayerPrefs.GetInt("HighScore");
+            //pausedPanelHighScoreText.text = "High score: " + highScore.ToString();
         }
         else
         {

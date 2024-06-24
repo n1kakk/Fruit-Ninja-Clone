@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 
 public class Blade : MonoBehaviour
@@ -13,14 +12,10 @@ public class Blade : MonoBehaviour
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        //coll = GetComponent<Collider2D>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        //coll.enabled = IsMouseMoving();
-
         SetBladeToMouse();
     }
 
