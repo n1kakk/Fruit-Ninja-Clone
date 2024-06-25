@@ -3,9 +3,14 @@ using UnityEngine;
 
 public class Blade : MonoBehaviour
 {
-    //[SerializeField] private SkinManager skinManager;
+    [SerializeField] private SkinManager skinManager;
     public float minVelo = 0.1f;
     private Rigidbody2D rb;
+
+
+    private AudioSource audioSource;
+    private Renderer bladeRenderer;
+
 
     private Vector3 lastMousePos;
     private Vector3 mouseVelo;
@@ -14,11 +19,16 @@ public class Blade : MonoBehaviour
     {
         //GetComponent<SpriteRenderer>().sprite = skinManager.GetSelectedSkin().sprite;
         rb = GetComponent<Rigidbody2D>();
+
+        audioSource = GetComponent<AudioSource>();
+        bladeRenderer = GetComponent<Renderer>();
+        UpdateBladeSkin();
     }
 
     void Update()
     {
         SetBladeToMouse();
+        UpdateBladeSkin();
     }
 
     private void SetBladeToMouse(){
@@ -34,5 +44,15 @@ public class Blade : MonoBehaviour
 
         if(traveled > minVelo) return true;
         else return false;
+    }
+
+    public void UpdateBladeSkin()
+    {
+        Skin selectedSkin = skinManager.GetSelectedSkin();
+        //GetComponent<SpriteRenderer>().sprite = selectedSkin.sprite;
+        if (bladeRenderer != null)
+        {
+            bladeRenderer.material = selectedSkin.material;
+        }
     }
 }

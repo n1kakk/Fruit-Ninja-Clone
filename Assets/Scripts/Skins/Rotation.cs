@@ -1,11 +1,12 @@
 using UnityEngine;
 using System.Collections;
 
-public class Rotation: MonoBehaviour
+public class Rotation : MonoBehaviour
 {
     public Quaternion[] targetRotations;
-    public float rotationSpeed = 0.5f; 
+    public float rotationSpeed = 0.5f;
     private int currentTargetIndex = 0;
+    private Coroutine rotationCoroutine;
 
     void Start()
     {
@@ -15,10 +16,14 @@ public class Rotation: MonoBehaviour
             new Quaternion(0.0178210903f, 0.079355374f, -0.402329683f, 0.91187501f)
         };
 
-        StartCoroutine(RotateContinuously());
+        // Запускаем вращение только если объект активен
+        if (gameObject.activeSelf)
+        {
+            rotationCoroutine = StartCoroutine(RotateContinuously());
+        }
     }
 
-       private IEnumerator RotateContinuously()
+    private IEnumerator RotateContinuously()
     {
         while (true)
         {
@@ -34,6 +39,25 @@ public class Rotation: MonoBehaviour
             }
 
             currentTargetIndex = (currentTargetIndex + 1) % targetRotations.Length;
+        }
+    }
+
+    // Вызывается, когда объект отключается или уничтожается
+    void OnDisable()
+    {
+        // Останавливаем корутину, чтобы избежать утечек памяти
+        if (rotationCoroutine != null)
+        {
+            StopCoroutine(rotationCoroutine);
+        }
+    }
+
+    // Метод для возобновления вращения
+    public void ResumeRotation()
+    {
+        if (rotationCoroutine == null && gameObject.activeSelf)
+        {
+            rotationCoroutine = StartCoroutine(RotateContinuously());
         }
     }
 }

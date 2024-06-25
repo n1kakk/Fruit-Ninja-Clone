@@ -5008,3 +5008,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slicedFruitPrefab: {fileID: 3696205152643392329, guid: 212298123d401c84398d1c1843ffb1f3, type: 3}
   juiceSpotPrefab: {fileID: 3573580246340667272, guid: 6d8ae8bc8241c454c895ec2ab0468030, type: 3}
+  skinManager: {fileID: 11400000, guid: 86b2212c993aa6c4ea316ff993f732b6, type: 2}

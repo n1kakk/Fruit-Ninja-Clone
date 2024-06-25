@@ -6,7 +6,36 @@ public class SkinManager : ScriptableObject {
     [SerializeField] public Skin[] skins;
     private const string Prefix = "Skin_";
     private const string SelectedSkin = "SelectedSkin";
-    public void SelectSkin(int skinIndex) => PlayerPrefs.SetInt(SelectedSkin, skinIndex);
+    //public Blade blade; 
+
+
+
+    // void Start()
+    // {
+    //     // Попытка найти компонент Blade, если он не назначен в инспекторе
+    //     if (blade == null)
+    //     {
+    //         blade = FindObjectOfType<Blade>();
+    //     }
+
+    //     // Проверка на наличие назначенного Blade
+    //     if (blade != null)
+    //     {
+    //         blade.UpdateBladeSkin();
+    //         Debug.Log("Проверка на наличие назначенного Blade");
+    //     }
+
+    // }
+
+
+    public void SelectSkin(int skinIndex){
+        PlayerPrefs.SetInt(SelectedSkin, skinIndex);
+        // if (blade != null)
+        //     {
+        //         blade.UpdateBladeSkin();
+        //         Debug.Log("SelectSkin назначенного Blade");
+        //     }
+    }
 
     public Skin GetSelectedSkin(){
         int skinIndex = PlayerPrefs.GetInt(SelectedSkin, 0);

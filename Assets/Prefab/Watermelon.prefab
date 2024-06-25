@@ -4971,6 +4971,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slicedFruitPrefab: {fileID: 7016422140028625921, guid: c0dac274d0f9a0d49aaf4a1722bf5ceb, type: 3}
   juiceSpotPrefab: {fileID: 5551428179517843122, guid: 6a68f924da1a1cc48a5b983145abdd0d, type: 3}
+  skinManager: {fileID: 11400000, guid: 86b2212c993aa6c4ea316ff993f732b6, type: 2}
 --- !u!50 &7486581292772490624
 Rigidbody2D:
   serializedVersion: 4

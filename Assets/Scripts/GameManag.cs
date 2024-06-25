@@ -33,13 +33,14 @@ public class GameManag : MonoBehaviour
 
 
     [Header("Sounds")]
-    public AudioClip[] sliceSounds;
+    //public AudioClip[] sliceSounds;
     private AudioSource audioSource;
 
 
     [Header("Shop")]
     public ShopManag shopManag;
     public GameObject shopPanel;
+    public Button closeShopButton; 
 
 
     private bool isPaused = false;
@@ -48,6 +49,7 @@ public class GameManag : MonoBehaviour
         pauseButton.interactable = true;
         gameOverPanel.SetActive(false);
         pausedPanel.SetActive(false);
+        shopPanel.SetActive(false);
         audioSource = GetComponent<AudioSource>();
         GetHighScore();
         GetCoins();
@@ -108,9 +110,14 @@ public class GameManag : MonoBehaviour
     }
 
 
-    public void PlayRandomSliceSound(){
-        AudioClip randomSound = sliceSounds[Random.Range(0, sliceSounds.Length)];
-        audioSource.PlayOneShot(randomSound);
+    // public void PlayRandomSliceSound(){
+    //     AudioClip randomSound = sliceSounds[Random.Range(0, sliceSounds.Length)];
+    //     audioSource.PlayOneShot(randomSound);
+    // }
+
+    public void PlaySliceSound(AudioClip sliceSound)
+    {
+        audioSource.PlayOneShot(sliceSound);
     }
 
     public void PauseGame(){
@@ -136,10 +143,18 @@ public class GameManag : MonoBehaviour
         pausedPanel.SetActive(false);
     }
 
-    void OnShopButtonClicked()
+    public void OnShopButtonClicked()
     {
         shopManag.HideUIElements(); 
         shopManag.ShowPanel(shopPanel); 
+    }
+
+    public void OnCloseShopButtonClicked()
+    {
+        shopManag.ShowUIElements(); // Показываем скрытые UI элементы
+        shopPanel.SetActive(false); // Скрываем панель магазина
+        gameOverPanel.SetActive(true);
+        
     }
 
 }

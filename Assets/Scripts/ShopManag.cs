@@ -16,7 +16,7 @@ public class ShopManag : MonoBehaviour
 
     
     [Header("Shop")]
-    //public ShopManag shopManag;
+    public ShopManag shopManag;
     public GameObject shopPanel;
 
 
@@ -64,7 +64,7 @@ public class ShopManag : MonoBehaviour
 
     void OnCloseShopButtonClicked()
     {
-        ShowUIElements(); // Показываем скрытые UI элементы
+        shopManag.ShowUIElements(); // Показываем скрытые UI элементы
         shopPanel.SetActive(false); // Скрываем панель магазина
     }
 

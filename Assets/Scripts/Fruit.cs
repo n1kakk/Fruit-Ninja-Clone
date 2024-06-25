@@ -6,6 +6,7 @@ public class Fruit : MonoBehaviour
     public GameObject slicedFruitPrefab;
     private ParticleSystem juiceParticalEffect;
     public GameObject juiceSpotPrefab;
+    [SerializeField] private SkinManager skinManager;
 
 
     private void Awake(){
@@ -17,7 +18,18 @@ public class Fruit : MonoBehaviour
     public void CreateSlicedFruit(){
         GameObject inst = (GameObject)Instantiate(slicedFruitPrefab, transform.position, transform.rotation);
 
-        FindObjectOfType<GameManag>().PlayRandomSliceSound();
+    //     SkinManager skinManager = FindObjectOfType<SkinManager>();
+    //     if (skinManager == null)
+    // {
+    //     Debug.LogError("SkinManager не найден!");
+    //     return;
+    // }
+
+
+        //FindObjectOfType<GameManag>().PlayRandomSliceSound();
+        AudioClip sliceSound = skinManager.GetSelectedSkin().sound;
+        
+        FindObjectOfType<GameManag>().PlaySliceSound(sliceSound);
 
         Rigidbody[] rbsOnSliced = inst.transform.GetComponentsInChildren<Rigidbody>();
         foreach(Rigidbody r in rbsOnSliced){

@@ -37,15 +37,16 @@
   </PropertyGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\Fruit.cs" />
+     <Compile Include="Assets\Scripts\Skins\SkinManager.cs" />
+     <Compile Include="Assets\Scripts\Menu.cs" />
      <Compile Include="Assets\Scripts\Spawner.cs" />
      <Compile Include="Assets\Scripts\Blade.cs" />
-     <Compile Include="Assets\Scripts\Bomb.cs" />
-     <Compile Include="Assets\Scripts\GameManag.cs" />
      <Compile Include="Assets\Scripts\Skins\SkinShopItem.cs" />
-     <Compile Include="Assets\Scripts\Skins\Skin.cs" />
-     <Compile Include="Assets\Scripts\Skins\SkinManager.cs" />
-     <Compile Include="Assets\Scripts\ShopManag.cs" />
+     <Compile Include="Assets\Scripts\Bomb.cs" />
      <Compile Include="Assets\Scripts\Skins\Rotation.cs" />
+     <Compile Include="Assets\Scripts\Skins\Skin.cs" />
+     <Compile Include="Assets\Scripts\GameManag.cs" />
+     <Compile Include="Assets\Scripts\ShopManag.cs" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />

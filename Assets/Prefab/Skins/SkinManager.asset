@@ -15,13 +15,21 @@ MonoBehaviour:
   skins:
   - cost: 0
     sprite: {fileID: 21300000, guid: 0f9f6b478d857684e97982d4777b664f, type: 3}
+    sound: {fileID: 8300000, guid: 46401ebfc5aa64642a8a6d1fe8f95504, type: 3}
+    material: {fileID: 2100000, guid: ffff041891561034faa28924806bdd4e, type: 2}
   - cost: 200
     sprite: {fileID: 21300000, guid: 7973ad07176d8c84abacc227e3edd7ec, type: 3}
+    sound: {fileID: 8300000, guid: e30b40d9446581047be1d992d094e443, type: 3}
+    material: {fileID: 2100000, guid: f6577eb43a464e34ebaec8e2c51919f3, type: 2}
   - cost: 500
     sprite: {fileID: 21300000, guid: 825f4cab0c0ae9949b7323a81cd9eefb, type: 3}
+    sound: {fileID: 8300000, guid: 22adde8b9a392084686d4a5fa3061c40, type: 3}
+    material: {fileID: 2100000, guid: 517b302b5f3e88547864f6f8813960a9, type: 2}
   - cost: 1500
     sprite: {fileID: 21300000, guid: 5d1ea9bcf92ce4544bf74856d0bacf6d, type: 3}
-  - cost: 3000
-    sprite: {fileID: 21300000, guid: f44bc23632c2a084f974ad6cb1da58bb, type: 3}
-  - cost: 5000
+    sound: {fileID: 8300000, guid: a51a93659ef463442bdc582ff6d2e2ac, type: 3}
+    material: {fileID: 2100000, guid: a75037df0fc71964780b6b3ae105b648, type: 2}
+  - cost: 4000
     sprite: {fileID: 21300000, guid: f66639a8acb0f934196cf51a54ed2f6e, type: 3}
+    sound: {fileID: 8300000, guid: a353966c4d6050b44bead274d9447de6, type: 3}
+    material: {fileID: 2100000, guid: 07e4c18852404be4194a5dbd93c550e0, type: 2}
