@@ -30,11 +30,13 @@ public class GameManag : MonoBehaviour
     // public Text pausedPanelHighScoreText;
     public Button pauseButton; 
 
-
+ 
 
     [Header("Sounds")]
     //public AudioClip[] sliceSounds;
+    public AudioClip backgrounsSound;
     private AudioSource audioSource;
+
 
 
     [Header("Shop")]
@@ -83,6 +85,11 @@ public class GameManag : MonoBehaviour
         Time.timeScale=0;
         audioSource.Stop();
         gameOverPanel.SetActive(true);
+
+        audioSource.clip = backgrounsSound;
+        audioSource.loop = true;
+        audioSource.Play();
+
         pauseButton.interactable = false;
         gameOverPanelScoreText.text = "Score: " + score.ToString();
 
@@ -105,8 +112,10 @@ public class GameManag : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        audioSource.Stop();
 
         Time.timeScale = 1;
+
     }
 
 
@@ -130,17 +139,22 @@ public class GameManag : MonoBehaviour
             //pausedPanelScoreText.text = "Score: " + score.ToString();
             //highScore = PlayerPrefs.GetInt("HighScore");
             //pausedPanelHighScoreText.text = "High score: " + highScore.ToString();
+            audioSource.clip = backgrounsSound;
+            audioSource.loop = true;
+            audioSource.Play();
         }
         else
         {
             Time.timeScale = 1; 
-            Debug.Log("Game Resumed");
+            //Debug.Log("Game Resumed");
             pausedPanel.SetActive(false);
+            audioSource.Stop();
         }
     }
     public void ResumeGame(){
         Time.timeScale = 1; 
         pausedPanel.SetActive(false);
+        audioSource.Stop();
     }
 
     public void OnShopButtonClicked()

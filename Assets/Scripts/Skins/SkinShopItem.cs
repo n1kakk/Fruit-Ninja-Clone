@@ -5,11 +5,22 @@ using UnityEngine.UI;
 
 public class SkinShopItem : MonoBehaviour
 {
+
+    [Header("Sounds")]
+    public AudioClip no;
+    public AudioClip ok;
+    private AudioSource audioSource;
+
+
   [SerializeField] private SkinManager skinManager;
   [SerializeField] private int skinIndex;
   [SerializeField] private Button buyButton;
   [SerializeField] private Text costText;
   private Skin skin;
+
+  void Awake(){
+    audioSource = GetComponent<AudioSource>();
+  }
 
   void Start()
   {
@@ -31,8 +42,14 @@ public class SkinShopItem : MonoBehaviour
   public void OnSkinPressed()
   {
     if (skinManager.IsUnlocked(skinIndex))
-    {
+    {      
       skinManager.SelectSkin(skinIndex);
+        audioSource.clip = ok;
+        audioSource.Play();
+    }
+    else{
+        audioSource.clip = no;
+        audioSource.Play();
     }
   }
 
