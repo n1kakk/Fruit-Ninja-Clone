@@ -6,6 +6,7 @@ Logs/
 UserSettings/
 ProjectSettings/
 Packages/
+*.meta
 
 
 # Visual Studio / MonoDevelop generated files
