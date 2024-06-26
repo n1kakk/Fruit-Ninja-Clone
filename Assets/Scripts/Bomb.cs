@@ -3,49 +3,56 @@ using UnityEngine;
 public class Bomb : MonoBehaviour
 {
     [Header("Sounds")]
-    public AudioClip fuseSound; // звук горения фитиля
-    public AudioClip explosionSound; // звук взрыва
+    public AudioClip fuseSound; 
+    public AudioClip explosionSound; 
 
-    private AudioSource fuseAudioSource; // для звука горения фитиля
-    private AudioSource explosionAudioSource; // для звука взрыва
+    private AudioSource fuseAudioSource; 
+    private AudioSource explosionAudioSource; 
     private bool isFuseSoundPlaying = false;
 
     private void Awake()
     {
-        // Добавляем два AudioSource компонента
+        // Add AudioSource components to the game object
         fuseAudioSource = gameObject.AddComponent<AudioSource>();
         explosionAudioSource = gameObject.AddComponent<AudioSource>();
 
-        // Назначаем аудиоклипы
+        // Set the audio clips for the audio sources
         fuseAudioSource.clip = fuseSound;
         explosionAudioSource.clip = explosionSound;
 
-        // Настраиваем повторяющийся звук горения фитиля
+        // Set the fuse audio source to loop
         fuseAudioSource.loop = true;
     }
-        private void OnBecameVisible()
+
+
+    // Called when the bomb becomes visible on the screen
+    private void OnBecameVisible()
     {
-        // Начинаем воспроизведение звука горения фитиля, когда объект виден на экране
         if (!isFuseSoundPlaying)
         {
             fuseAudioSource.Play();
             isFuseSoundPlaying = true;
         }
     }
-        private void OnBecameInvisible()
+
+
+    // Called when the bomb becomes invisible on the screen
+    private void OnBecameInvisible()
     {
-        // Останавливаем воспроизведение звука горения фитиля, когда объект не виден на экране
         if (isFuseSoundPlaying)
         {
             fuseAudioSource.Stop();
             isFuseSoundPlaying = false;
         }
     }
+
+
+    // Called when another collider enters the bomb's trigger collider
     private void OnTriggerEnter2D(Collider2D collision) {
-        Blade b = collision.GetComponent<Blade>();
+
+        Blade b = collision.GetComponent<Blade>(); // Check if the collision is with a Blade
         if(!b) return;
 
-                // Останавливаем звук горения фитиля и воспроизводим звук взрыва
         if (isFuseSoundPlaying)
         {
             fuseAudioSource.Stop();
@@ -53,7 +60,7 @@ public class Bomb : MonoBehaviour
         }
         explosionAudioSource.Play();
     
-        FindObjectOfType<GameManag>().OnBombHit();
+        FindObjectOfType<GameManag>().OnBombHit(); // Call the OnBombHit method from GameManag
 
     }
     

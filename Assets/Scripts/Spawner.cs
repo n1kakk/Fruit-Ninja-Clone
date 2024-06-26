@@ -27,6 +27,7 @@ public class Spawner : MonoBehaviour
 
     void Start()
     {
+        // Check if the current scene is the game scene (build index 1)
         if (SceneManager.GetActiveScene().buildIndex == 1) 
         {
             StartCoroutine(SpawnFruits());
@@ -34,22 +35,33 @@ public class Spawner : MonoBehaviour
         }  
     }
 
-    void Update() {
+    void Update() 
+    {
+        // Increase the bomb probability over time
         bombProbability += bombProbabilityIncreaseRate * Time.deltaTime;
 
+        // Clamp the bomb probability to the maximum value
         if (bombProbability > maxBombProbability)
         {
             bombProbability = maxBombProbability;
         }
     }
 
+
+    // Coroutine to spawn fruits and bombs
     private IEnumerator SpawnFruits(){
 
-        while(true){
+        while(true)
+        {
+            // Wait for a random time between minWait and maxWait
             yield return new WaitForSeconds(Random.Range(minWait, maxWait));
+
+            // Select a random spawn point
             Transform t = spawnPlaces[Random.Range(0, spawnPlaces.Length)];
 
             GameObject obj = null;
+
+            // Randomly determine whether to spawn a bomb or a fruit
             float p = Random.Range(0, 100);
             if(p<bombProbability){
                 obj = bomb;
@@ -57,13 +69,15 @@ public class Spawner : MonoBehaviour
                 obj = objectsToSpawn[Random.Range(0, objectsToSpawn.Length)];
             }
 
+            // Instantiate the selected object at the spawn point
             GameObject fruit = Instantiate(obj, t.position, t.rotation);
 
+            // Apply a random force to the spawned object
             fruit.GetComponent<Rigidbody2D>().AddForce(t.transform.up * Random.Range(minForce, maxForce), ForceMode2D.Impulse);
 
+            // Destroy the spawned object after 5 seconds
             Destroy(fruit, 5);
         }
     }
-
-
+    
 }

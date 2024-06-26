@@ -15,9 +15,10 @@ public class Blade : MonoBehaviour
     private Vector3 lastMousePos;
     private Vector3 mouseVelo;
     private Collider2D coll;
+
+
     void Awake()
     {
-        //GetComponent<SpriteRenderer>().sprite = skinManager.GetSelectedSkin().sprite;
         rb = GetComponent<Rigidbody2D>();
 
         audioSource = GetComponent<AudioSource>();
@@ -30,13 +31,17 @@ public class Blade : MonoBehaviour
         SetBladeToMouse();
         UpdateBladeSkin();
     }
+    
 
+    // Sets the blade's position to follow the mouse cursor
     private void SetBladeToMouse(){
         var mousePos = Input.mousePosition;
         mousePos.z = 10;
         rb.position = Camera.main.ScreenToWorldPoint(mousePos);  
     }
 
+
+    // Checks if the mouse is moving
     private bool IsMouseMoving(){
         Vector3 currMousePos = transform.position;
         float traveled = (lastMousePos - currMousePos).magnitude;
@@ -46,13 +51,14 @@ public class Blade : MonoBehaviour
         else return false;
     }
 
+
+    // Updates the blade's appearance based on the selected skin
     public void UpdateBladeSkin()
     {
-        Skin selectedSkin = skinManager.GetSelectedSkin();
-        //GetComponent<SpriteRenderer>().sprite = selectedSkin.sprite;
+        Skin selectedSkin = skinManager.GetSelectedSkin(); // Get the currently selected skin
         if (bladeRenderer != null)
         {
-            bladeRenderer.material = selectedSkin.material;
+            bladeRenderer.material = selectedSkin.material; // Apply the skin's material to the blade's renderer
         }
     }
 }

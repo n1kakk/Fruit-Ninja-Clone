@@ -20,18 +20,24 @@ public class ShopManag : MonoBehaviour
     public GameObject shopPanel;
 
 
+    // Called when the script instance is being loaded
     void Start()
     {
         HideAllPanels();
     }
 
+
     void Update()
     {
+        // Update the coin count text with the value stored in PlayerPrefs
         coinsText.text = "Coins: " + PlayerPrefs.GetInt("Coins");
+
+        // Update the selected skin image with the currently selected skin's sprite
         selectedSkin.sprite = skinManager.GetSelectedSkin().sprite;
     }
     
 
+    // Method to hide all shop panels
     void HideAllPanels()
     {
         foreach (GameObject panel in panels)
@@ -40,12 +46,16 @@ public class ShopManag : MonoBehaviour
         }
     }
 
+
+    // Method to show a specific panel
     public void ShowPanel(GameObject panel)
     {
         HideAllPanels();
         panel.SetActive(true);
     }
 
+
+    // Method to hide specified UI elements
     public void HideUIElements()
     {
         foreach (GameObject element in uiElementsToHide)
@@ -54,6 +64,8 @@ public class ShopManag : MonoBehaviour
         }
     }
 
+
+    // Method to show specified UI elements
     public void ShowUIElements()
     {
         foreach (GameObject element in uiElementsToHide)
@@ -62,13 +74,15 @@ public class ShopManag : MonoBehaviour
         }
     }
 
+
+    // Method to handle closing the shop panel
     void OnCloseShopButtonClicked()
     {
-        shopManag.ShowUIElements(); // Показываем скрытые UI элементы
-        shopPanel.SetActive(false); // Скрываем панель магазина
+        shopManag.ShowUIElements(); 
+        shopPanel.SetActive(false); 
     }
 
 
-
-  public void LoadMenu() => SceneManager.LoadScene("MainMenuScene");
+    // Method to load the main menu scene
+    public void LoadMenu() => SceneManager.LoadScene("MainMenuScene");
 }

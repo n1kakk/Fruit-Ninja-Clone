@@ -9,6 +9,7 @@ public class MainMenu2 : MonoBehaviour
         SceneManager.LoadScene(1);
     }
     public void ExitGame(){
-        Application.Quit();
+        //Application.Quit();
+        Debug.Log("Button is pressed");
     }
 }

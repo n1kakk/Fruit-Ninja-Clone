@@ -26,14 +26,11 @@ public class GameManag : MonoBehaviour
     
     [Header("Paused")] 
     public GameObject pausedPanel;
-    // public Text pausedPanelScoreText;
-    // public Text pausedPanelHighScoreText;
     public Button pauseButton; 
 
  
 
     [Header("Sounds")]
-    //public AudioClip[] sliceSounds;
     public AudioClip backgrounsSound;
 
     private AudioSource audioSource;
@@ -51,31 +48,34 @@ public class GameManag : MonoBehaviour
 
     private bool isPaused = false;
 
+
+    // Initialize the game state
     private void Awake(){
-        Debug.Log("Awake called in " + gameObject.name);
-                
-        //pauseButton.interactable = true;
         gameOverPanel.SetActive(false);
         pausedPanel.SetActive(false);
         shopPanel.SetActive(false);
         audioSource = GetComponent<AudioSource>();
         GetHighScore();
         GetCoins();
-        playPanel.SetActive(false);
-
-        
+        playPanel.SetActive(false);       
     }
     
+
+    // Retrieve the high score from PlayerPrefs and update the UI
     private void GetHighScore(){
         highScore = PlayerPrefs.GetInt("HighScore");
         highScoreText.text = "Best: " + highScore;
     }
 
+
+    // Retrieve the coin count from PlayerPrefs and update the UI
     private void GetCoins(){
         coins = PlayerPrefs.GetInt("Coins");
         coinsText.text = "Coins: " + coins;
     }
 
+
+    // Increase the score and update the UI
     public void IncreaseScore(int points){
         score += points;
         scoreText.text = score.ToString();
@@ -85,11 +85,15 @@ public class GameManag : MonoBehaviour
         }
     }
 
+
+    // Increase the coin count and update the UI
     public void IncreaseCoins(int points){
         coins += points;
         coinsText.text = "Coins: " + coins.ToString();
     }
 
+
+    // Handle the event when the bomb is hit
     public void OnBombHit(){
         Time.timeScale=0;
         audioSource.Stop();
@@ -100,7 +104,6 @@ public class GameManag : MonoBehaviour
         audioSource.loop = true;
         audioSource.Play();
 
-        //pauseButton.interactable = false;
         gameOverPanelScoreText.text = "Score: " + score.ToString();
 
         highScore = PlayerPrefs.GetInt("HighScore");
@@ -110,6 +113,8 @@ public class GameManag : MonoBehaviour
         gameOverPanelCoinsText.text = coins.ToString();
     }
 
+
+    // Restart the game and reset the game state
     public void RestartGame(){
         score = 0;
         scoreText.text = score.ToString();
@@ -119,6 +124,7 @@ public class GameManag : MonoBehaviour
         pausedPanel.SetActive(false);
         playPanel.SetActive(true);
 
+        // Destroy all interactable objects
         foreach ( GameObject gameObject in GameObject.FindGameObjectsWithTag("Interactable"))
         {
             Destroy(gameObject);
@@ -128,11 +134,16 @@ public class GameManag : MonoBehaviour
         Time.timeScale = 1;
 
     }
+
+
+    // Play the slice sound effect
     public void PlaySliceSound(AudioClip sliceSound)
     {
         audioSource.PlayOneShot(sliceSound);
     }
+    
 
+    // Toggle pause state
     public void PauseGame(){
         isPaused = !isPaused;
         if (isPaused)
@@ -153,6 +164,9 @@ public class GameManag : MonoBehaviour
             audioSource.Stop();
         }
     }
+
+
+    // Resume the game from pause state
     public void ResumeGame(){
         Time.timeScale = 1;
         pausedPanel.SetActive(false);
@@ -160,6 +174,8 @@ public class GameManag : MonoBehaviour
         audioSource.Stop();
     }
 
+
+    // Show the shop panel and hide other UI elements
     public void OnShopButtonClicked()
     {
         shopManag.HideUIElements(); 
@@ -167,13 +183,13 @@ public class GameManag : MonoBehaviour
         playPanel.SetActive(false);
     }
 
+
+    // Close the shop panel and show the game over panel
     public void OnCloseShopButtonClicked()
     {
         shopManag.ShowUIElements();
         shopPanel.SetActive(false);
-        gameOverPanel.SetActive(true);
-
-        
+        gameOverPanel.SetActive(true);        
     }
 
 }

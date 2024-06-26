@@ -4,39 +4,20 @@
 public class SkinManager : ScriptableObject {
         
     [SerializeField] public Skin[] skins;
+
+
+    // Constants for PlayerPrefs keys
     private const string Prefix = "Skin_";
     private const string SelectedSkin = "SelectedSkin";
-    //public Blade blade; 
 
 
-
-    // void Start()
-    // {
-    //     // Попытка найти компонент Blade, если он не назначен в инспекторе
-    //     if (blade == null)
-    //     {
-    //         blade = FindObjectOfType<Blade>();
-    //     }
-
-    //     // Проверка на наличие назначенного Blade
-    //     if (blade != null)
-    //     {
-    //         blade.UpdateBladeSkin();
-    //         Debug.Log("Проверка на наличие назначенного Blade");
-    //     }
-
-    // }
-
-
+    // Method to select a skin by index and save the selection in PlayerPrefs
     public void SelectSkin(int skinIndex){
         PlayerPrefs.SetInt(SelectedSkin, skinIndex);
-        // if (blade != null)
-        //     {
-        //         blade.UpdateBladeSkin();
-        //         Debug.Log("SelectSkin назначенного Blade");
-        //     }
     }
 
+
+    // Method to get the currently selected skin
     public Skin GetSelectedSkin(){
         int skinIndex = PlayerPrefs.GetInt(SelectedSkin, 0);
         if(skinIndex >= 0 && skinIndex< skins.Length){
@@ -44,7 +25,13 @@ public class SkinManager : ScriptableObject {
         }else return null;
     }
 
+
+    // Method to unlock a skin by setting its value in PlayerPrefs
     public void Unlock(int skinIndex) => PlayerPrefs.SetInt(Prefix + skinIndex, 1);
+
+    
+
+    // Method to check if a skin is unlocked by reading its value from PlayerPrefs
     public bool IsUnlocked(int skinIndex) => PlayerPrefs.GetInt(Prefix + skinIndex, 0) == 1;
 } 
 
