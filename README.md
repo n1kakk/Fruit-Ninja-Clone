@@ -4,15 +4,15 @@ This project is a clone of the popular game Fruit Ninja, developed using Unity. 
 
 ## Play the Game Online
 
-You can play the game directly in your browser by following this link: Play [Fruit Ninja Clone](https://n1kakk.itch.io/fruit-ninja-clone)
+You can play the game directly in your browser by following this link: [Fruit Ninja Clone](https://n1kakk.itch.io/fruit-ninja-clone)
 
 
 ## Features
 
-Swipe to Slice Fruits: Use swipe gestures on the screen to slice fruits.
-Score Accumulation: Earn points for each sliced fruit.
-Variety of Fruits: The game features multiple types of fruits with different properties and bonuses.
-Touch Controls: Simple and intuitive touch-based controls.
+* Swipe to Slice Fruits: Use swipe gestures on the screen to slice fruits.
+* Score Accumulation: Earn points for each sliced fruit.
+* Variety of Fruits: The game features multiple types of fruits with different properties and bonuses.
+* Touch Controls: Simple and intuitive touch-based controls.
 
 ## Requirements
 
