@@ -1,4 +1,4 @@
-
+using UnityEngine.SceneManagement;
 using UnityEngine;
 using UnityEngine.UI;
 public class GameManag : MonoBehaviour
@@ -35,6 +35,7 @@ public class GameManag : MonoBehaviour
     [Header("Sounds")]
     //public AudioClip[] sliceSounds;
     public AudioClip backgrounsSound;
+
     private AudioSource audioSource;
 
 
@@ -44,19 +45,27 @@ public class GameManag : MonoBehaviour
     public GameObject shopPanel;
     public Button closeShopButton; 
 
+    [Header("Play")]
+    public GameObject playPanel;
+
 
     private bool isPaused = false;
 
     private void Awake(){
-        pauseButton.interactable = true;
+        Debug.Log("Awake called in " + gameObject.name);
+                
+        //pauseButton.interactable = true;
         gameOverPanel.SetActive(false);
         pausedPanel.SetActive(false);
         shopPanel.SetActive(false);
         audioSource = GetComponent<AudioSource>();
         GetHighScore();
         GetCoins();
-    }
+        playPanel.SetActive(false);
 
+        
+    }
+    
     private void GetHighScore(){
         highScore = PlayerPrefs.GetInt("HighScore");
         highScoreText.text = "Best: " + highScore;
@@ -85,12 +94,13 @@ public class GameManag : MonoBehaviour
         Time.timeScale=0;
         audioSource.Stop();
         gameOverPanel.SetActive(true);
+        playPanel.SetActive(false);
 
         audioSource.clip = backgrounsSound;
         audioSource.loop = true;
         audioSource.Play();
 
-        pauseButton.interactable = false;
+        //pauseButton.interactable = false;
         gameOverPanelScoreText.text = "Score: " + score.ToString();
 
         highScore = PlayerPrefs.GetInt("HighScore");
@@ -107,6 +117,7 @@ public class GameManag : MonoBehaviour
 
         gameOverPanel.SetActive(false);
         pausedPanel.SetActive(false);
+        playPanel.SetActive(true);
 
         foreach ( GameObject gameObject in GameObject.FindGameObjectsWithTag("Interactable"))
         {
@@ -117,13 +128,6 @@ public class GameManag : MonoBehaviour
         Time.timeScale = 1;
 
     }
-
-
-    // public void PlayRandomSliceSound(){
-    //     AudioClip randomSound = sliceSounds[Random.Range(0, sliceSounds.Length)];
-    //     audioSource.PlayOneShot(randomSound);
-    // }
-
     public void PlaySliceSound(AudioClip sliceSound)
     {
         audioSource.PlayOneShot(sliceSound);
@@ -136,9 +140,7 @@ public class GameManag : MonoBehaviour
             Time.timeScale = 0; 
             Debug.Log("Game Paused");
             pausedPanel.SetActive(true);
-            //pausedPanelScoreText.text = "Score: " + score.ToString();
-            //highScore = PlayerPrefs.GetInt("HighScore");
-            //pausedPanelHighScoreText.text = "High score: " + highScore.ToString();
+            playPanel.SetActive(false);
             audioSource.clip = backgrounsSound;
             audioSource.loop = true;
             audioSource.Play();
@@ -146,14 +148,15 @@ public class GameManag : MonoBehaviour
         else
         {
             Time.timeScale = 1; 
-            //Debug.Log("Game Resumed");
             pausedPanel.SetActive(false);
+            playPanel.SetActive(true);
             audioSource.Stop();
         }
     }
     public void ResumeGame(){
-        Time.timeScale = 1; 
+        Time.timeScale = 1;
         pausedPanel.SetActive(false);
+        playPanel.SetActive(true);
         audioSource.Stop();
     }
 
@@ -161,13 +164,15 @@ public class GameManag : MonoBehaviour
     {
         shopManag.HideUIElements(); 
         shopManag.ShowPanel(shopPanel); 
+        playPanel.SetActive(false);
     }
 
     public void OnCloseShopButtonClicked()
     {
-        shopManag.ShowUIElements(); // Показываем скрытые UI элементы
-        shopPanel.SetActive(false); // Скрываем панель магазина
+        shopManag.ShowUIElements();
+        shopPanel.SetActive(false);
         gameOverPanel.SetActive(true);
+
         
     }
 

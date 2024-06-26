@@ -362,8 +362,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64e516341852cd74090d068d884f1b5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  no: {fileID: 8300000, guid: d5a4d243aef2e774abd136d331e95e39, type: 3}
+  no: {fileID: 8300000, guid: f99af6148b6a89e4e893ce3280fa8fe7, type: 3}
   ok: {fileID: 8300000, guid: b719233e85c056741801798c44bc3546, type: 3}
+  onBought: {fileID: 8300000, guid: 1b442c2eadc9e6749bd920af22b289f7, type: 3}
   skinManager: {fileID: 11400000, guid: 86b2212c993aa6c4ea316ff993f732b6, type: 2}
   skinIndex: 0
   buyButton: {fileID: 5220804190127194996}

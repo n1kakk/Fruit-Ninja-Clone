@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Spawner : MonoBehaviour
 {
@@ -20,13 +21,22 @@ public class Spawner : MonoBehaviour
     private float maxBombProbability = 50f;
 
 
+    [Header("Play")]
+    public GameObject playPanel;
+
+
     void Start()
     {
-        StartCoroutine(SpawnFruits());   
+        if (SceneManager.GetActiveScene().buildIndex == 1) 
+        {
+            StartCoroutine(SpawnFruits());
+            playPanel.SetActive(true);
+        }  
     }
+
     void Update() {
         bombProbability += bombProbabilityIncreaseRate * Time.deltaTime;
-        
+
         if (bombProbability > maxBombProbability)
         {
             bombProbability = maxBombProbability;

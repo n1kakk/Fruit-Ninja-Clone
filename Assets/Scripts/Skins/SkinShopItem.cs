@@ -9,6 +9,7 @@ public class SkinShopItem : MonoBehaviour
     [Header("Sounds")]
     public AudioClip no;
     public AudioClip ok;
+    public AudioClip onBought;
     private AudioSource audioSource;
 
 
@@ -64,6 +65,8 @@ public class SkinShopItem : MonoBehaviour
       skinManager.Unlock(skinIndex);
       buyButton.gameObject.SetActive(false);
       skinManager.SelectSkin(skinIndex);
+      audioSource.clip = onBought;
+      audioSource.Play();
     }
     else
     {
