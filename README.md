@@ -10,9 +10,9 @@ You can play the game directly in your browser by following this link: [Fruit Ni
 ## Features
 
 * Swipe to Slice Fruits: Use swipe gestures on the screen to slice fruits.
-* Score Accumulation: Earn points for each sliced fruit.
+* Score Accumulation: Earn points and coins for each sliced fruit.
 * Variety of Fruits: The game features multiple types of fruits with different properties and bonuses.
-* Touch Controls: Simple and intuitive touch-based controls.
+* Different skins: Buy new swords.
 
 ## Requirements
 
